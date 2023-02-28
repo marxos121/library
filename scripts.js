@@ -3,6 +3,7 @@ function Book(title, author, pages, haveRead) {
   this.author = author;
   this.pages = pages;
   this.haveRead = haveRead;
+  this.id = counter++;
 }
 
 function addBookToLibrary(book) {
@@ -17,6 +18,12 @@ function addBookToLibrary(book) {
   let deleteButton = document.createElement("button");
   deleteButton.textContent = "X";
   deleteButton.classList.add("delete-button");
+  deleteButton.addEventListener("click", () => {
+    let id = newBook.getAttribute("id");
+    libraryDisplay.removeChild(newBook);
+    let index = myLibrary.indexOf(id);
+    myLibrary.splice(index, 1);
+  })
   let newBookBotDiv = document.createElement("div");
   let newBookAuthor = document.createElement("p");
   newBookAuthor.textContent = "Author: " + book.author;
@@ -27,6 +34,8 @@ function addBookToLibrary(book) {
   let newBookRead = document.createElement("input");
   newBookRead.setAttribute("type", "checkbox");
   newBookRead.checked = book.haveRead;
+
+  newBook.setAttribute("id", book.id);
 
   newBookTopDiv.appendChild(newBookTitle);
   newBookTopDiv.appendChild(deleteButton);
@@ -57,6 +66,9 @@ function toggleFormVisibility() {
     overlay.style.setProperty("display", "none");
   }
 }
+
+let counter = 0;
+
 const overlay = document.querySelector(".form-background");
 overlay.addEventListener("click", hideForm);
 
