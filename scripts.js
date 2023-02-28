@@ -27,21 +27,29 @@ function addBookToLibrary(book) {
   libraryDisplay.appendChild(newBook);
 }
 
+function hideForm() {
+  toggleFormButton.textContent = "+";
+  overlay.style.setProperty("display", "none");
+}
+
 function toggleFormVisibility() {
   const displayStyle = window
-    .getComputedStyle(form)
+    .getComputedStyle(overlay)
     .getPropertyValue("display");
   if (displayStyle === "none") {
     toggleFormButton.textContent = "-";
-    form.style.setProperty("display", "grid");
+    overlay.style.setProperty("display", "block");
   } else {
     toggleFormButton.textContent = "+";
-    form.style.setProperty("display", "none");
+    overlay.style.setProperty("display", "none");
   }
 }
+const overlay = document.querySelector(".form-background");
+overlay.addEventListener("click", hideForm);
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => event.preventDefault());
+form.addEventListener("click", (event) => event.stopPropagation());
 
 const toggleFormButton = document.querySelector(".control-form");
 toggleFormButton.addEventListener("click", toggleFormVisibility);

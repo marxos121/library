@@ -33,8 +33,17 @@ header {
   border-color: rgba(80, 80, 80, 0.4);
 }
 
-form {
+.form-background {
   display: none;
+  background-color: rgba(46, 46, 46, 0.4);
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+form {
+  display: grid;
   position: absolute;
   top: 50%;
   left: 50%;
