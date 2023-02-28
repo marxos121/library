@@ -9,12 +9,13 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 
   let newBook = document.createElement("div");
+  newBook.classList.add("book-card");
   let newBookTitle = document.createElement("p");
-  newBookTitle.textContent = book.title;
+  newBookTitle.textContent = "Title: " + book.title;
   let newBookAuthor = document.createElement("p");
-  newBookAuthor.textContent = book.author;
+  newBookAuthor.textContent = "Author: " + book.author;
   let newBookPages = document.createElement("p");
-  newBookPages.textContent = book.pages;
+  newBookPages.textContent = "Pages: " + book.pages;
   let newBookRead = document.createElement("p");
   newBookRead.textContent = book.haveRead ? "Read" : "Haven't read";
 
