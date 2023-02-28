@@ -4,6 +4,10 @@ body {
   color: aliceblue;
 }
 
+p {
+  margin: 0;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -88,13 +92,45 @@ input {
 
 .book-card {
   display: grid;
-  grid-template-columns: 1fr;
-  width: 10vw;
-  padding: 2rem;
+  grid-template-columns: max-content;
+  border-style: solid;
+  border-color: brown;
+  border-radius: 1rem;
+  background-color: rgb(46, 46, 46);
 }
 
 .brown-border {
   border-style: solid;
   border-color: brown;
   border-radius: 1rem;
+}
+
+.book-card > * {
+  font-size: 1.5rem;
+}
+
+.book-card > :first-child {
+  height: 1.5em;
+  display: flex;
+  border: none;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: brown;
+  border-radius: 0.8rem;
+  padding-left: 1em;
+  padding-right: 0.2em;
+}
+
+.delete-button {
+  background-color: brown;
+  margin-left: auto;
+  border: none;
+  border-radius: 0.8rem;
+  font-weight: 900;
+  color: aliceblue;
+}
+
+.book-card > :last-child {
+  padding: 1em 2em;
 }

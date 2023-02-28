@@ -10,19 +10,32 @@ function addBookToLibrary(book) {
 
   let newBook = document.createElement("div");
   newBook.classList.add("book-card", "brown-border");
+  let newBookTopDiv = document.createElement("div");
   let newBookTitle = document.createElement("p");
-  newBookTitle.textContent = "Title: " + book.title;
+  newBookTitle.textContent = book.title;
+  newBookTitle.classList.add("book-title");
+  let deleteButton = document.createElement("button");
+  deleteButton.textContent = "X";
+  deleteButton.classList.add("delete-button");
+  let newBookBotDiv = document.createElement("div");
   let newBookAuthor = document.createElement("p");
   newBookAuthor.textContent = "Author: " + book.author;
   let newBookPages = document.createElement("p");
   newBookPages.textContent = "Pages: " + book.pages;
-  let newBookRead = document.createElement("p");
-  newBookRead.textContent = book.haveRead ? "Read" : "Haven't read";
+  let newBookReadLabel = document.createElement("label");
+  newBookReadLabel.textContent = "Read: ";
+  let newBookRead = document.createElement("input");
+  newBookRead.setAttribute("type", "checkbox");
+  newBookRead.checked = book.haveRead;
 
-  newBook.appendChild(newBookTitle);
-  newBook.appendChild(newBookAuthor);
-  newBook.appendChild(newBookPages);
-  newBook.appendChild(newBookRead);
+  newBookTopDiv.appendChild(newBookTitle);
+  newBookTopDiv.appendChild(deleteButton);
+  newBook.appendChild(newBookTopDiv);
+  newBookBotDiv.appendChild(newBookAuthor);
+  newBookBotDiv.appendChild(newBookPages);
+  newBookBotDiv.appendChild(newBookReadLabel);
+  newBookBotDiv.appendChild(newBookRead);
+  newBook.append(newBookBotDiv);
 
   libraryDisplay.appendChild(newBook);
 }
