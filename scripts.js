@@ -26,9 +26,22 @@ function addBookToLibrary(book) {
   libraryDisplay.appendChild(newBook);
 }
 
-document
-  .querySelector("form")
-  .addEventListener("submit", (event) => event.preventDefault());
+function toggleFormVisibility() {
+  const style = window.getComputedStyle(form).getPropertyValue("display");
+  if (style === "none") {
+    toggleFormButton.textContent = "-";
+    form.style.setProperty("display", "flex");
+  } else {
+    toggleFormButton.textContent = "+";
+    form.style.setProperty("display", "none");
+  }
+}
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (event) => event.preventDefault());
+
+const toggleFormButton = document.querySelector(".control-form");
+toggleFormButton.addEventListener("click", toggleFormVisibility);
 
 const libraryDisplay = document.querySelector(".library");
 
