@@ -53,7 +53,7 @@ const submitButton = document.querySelector("form > button");
 submitButton.addEventListener("click", () => {
   const inputs = document.querySelectorAll("form > input");
   for (el of inputs) {
-    if (!el && el.type != "checkbox") {
+    if (!el.value && el.type != "checkbox") {
       return;
     }
   }
