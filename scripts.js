@@ -9,7 +9,7 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 
   let newBook = document.createElement("div");
-  newBook.classList.add("book-card");
+  newBook.classList.add("book-card", "brown-border");
   let newBookTitle = document.createElement("p");
   newBookTitle.textContent = "Title: " + book.title;
   let newBookAuthor = document.createElement("p");
@@ -28,10 +28,12 @@ function addBookToLibrary(book) {
 }
 
 function toggleFormVisibility() {
-  const style = window.getComputedStyle(form).getPropertyValue("display");
-  if (style === "none") {
+  const displayStyle = window
+    .getComputedStyle(form)
+    .getPropertyValue("display");
+  if (displayStyle === "none") {
     toggleFormButton.textContent = "-";
-    form.style.setProperty("display", "flex");
+    form.style.setProperty("display", "grid");
   } else {
     toggleFormButton.textContent = "+";
     form.style.setProperty("display", "none");
