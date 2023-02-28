@@ -26,8 +26,26 @@ function addBookToLibrary(book) {
   libraryDisplay.appendChild(newBook);
 }
 
+document
+  .querySelector("form")
+  .addEventListener("submit", (event) => event.preventDefault());
+
 const libraryDisplay = document.querySelector(".library");
 
 let myLibrary = [];
 addBookToLibrary(new Book("Demons", "Dostoevsky", 400, true));
 addBookToLibrary(new Book("Alice in Wonderland", "Lewis Carroll", 200, false));
+
+const submitButton = document.querySelector("form > button");
+submitButton.addEventListener("click", () => {
+  const inputs = document.querySelectorAll("form > input");
+  for (el of inputs) {
+    if (!el && el.type != "checkbox") {
+      return;
+    }
+  }
+
+  addBookToLibrary(
+    new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value)
+  );
+});
