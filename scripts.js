@@ -19,11 +19,11 @@ function addBookToLibrary(book) {
   deleteButton.textContent = "X";
   deleteButton.classList.add("delete-button");
   deleteButton.addEventListener("click", () => {
-    let id = newBook.getAttribute("id");
+    let id = newBook.getAttribute("data-id");
     libraryDisplay.removeChild(newBook);
     let index = myLibrary.indexOf(id);
     myLibrary.splice(index, 1);
-  })
+  });
   let newBookBotDiv = document.createElement("div");
   let newBookAuthor = document.createElement("p");
   newBookAuthor.textContent = "Author: " + book.author;
@@ -35,7 +35,7 @@ function addBookToLibrary(book) {
   newBookRead.setAttribute("type", "checkbox");
   newBookRead.checked = book.haveRead;
 
-  newBook.setAttribute("id", book.id);
+  newBook.setAttribute("data-id", book.id);
 
   newBookTopDiv.appendChild(newBookTitle);
   newBookTopDiv.appendChild(deleteButton);
