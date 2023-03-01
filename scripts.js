@@ -85,14 +85,8 @@ let myLibrary = [];
 addBookToLibrary(new Book("Demons", "Dostoevsky", 400, true));
 addBookToLibrary(new Book("Alice in Wonderland", "Lewis Carroll", 200, false));
 
-const submitButton = document.querySelector("form > button");
-submitButton.addEventListener("click", () => {
+form.addEventListener("submit", () => {
   const inputs = document.querySelectorAll("form > input");
-  for (el of inputs) {
-    if (!el.value && el.type != "checkbox") {
-      return;
-    }
-  }
 
   addBookToLibrary(
     new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value)

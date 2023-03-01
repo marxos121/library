@@ -134,3 +134,19 @@ input {
 .book-card > :last-child {
   padding: 1em 2em;
 }
+
+form > button:active {
+  background-color: rgb(2, 132, 2);
+  border: rgb(6, 95, 6) 5px solid;
+  transform: scale(1.1);
+}
+
+input:valid {
+  box-shadow: inset -3px -3px 5px rgba(4, 73, 4, 0.4),
+    inset 3px 3px 5px rgba(4, 73, 4, 0.4);
+}
+
+input:invalid {
+  box-shadow: inset -3px -3px 5px rgba(255, 0, 0, 0.4),
+    inset 3px 3px 5px rgba(255, 0, 0, 0.4);
+}
