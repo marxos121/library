@@ -23,14 +23,16 @@ header {
 
 .control-form {
   z-index: 1;
-  height: 10vmin;
-  width: 10vmin;
+  width: 4rem;
+  height: 4rem;
 
-  color: black;
+  color: aliceblue;
+  font-weight: bold;
   border-radius: 50%;
-  border-width: 0.5em;
-  background-color: aliceblue;
-  border-color: aliceblue;
+  font-size: 2rem;
+  border-width: 0.5rem;
+  background-color: rgba(0, 136, 255, 0.696);
+  border-color: rgb(0, 101, 189);
 }
 
 .control-form {
@@ -137,7 +139,7 @@ input {
 
 form > button:active {
   background-color: rgb(2, 132, 2);
-  border: rgb(6, 95, 6) 5px solid;
+  border: rgb(9, 109, 9) 5px solid;
   transform: scale(1.1);
 }
 
