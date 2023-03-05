@@ -1,9 +1,10 @@
 class Book {
-  constructor(title, author, pages, haveRead) {
+  constructor(title, author, pages, haveRead, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.haveRead = haveRead;
+    this.id = id;
   }
 
   set read(val) {
@@ -21,12 +22,12 @@ class Library {
   remove(book) {
     let id = book.getAttribute("data-id");
     this.#display.removeChild(book);
-    let index = this.#library.indexOf(id);
+    let index = this.#library.findIndex((element) => element.id == id);
     this.#library.splice(index, 1);
   }
 
   add(title, author, pages, read) {
-    this.#library.push(new Book(title, author, pages, read));
+    this.#library.push(new Book(title, author, pages, read, this.counter));
 
     let newBook = document.createElement("div");
     newBook.classList.add("book-card", "brown-border");
@@ -61,7 +62,6 @@ class Library {
     newBook.appendChild(newBookTopDiv);
     newBook.append(newBookBotDiv);
     this.#display.appendChild(newBook);
-
     newBook.setAttribute("data-id", this.counter++);
   }
 }
@@ -83,14 +83,15 @@ function toggleFormVisibility() {
   }
 }
 
-document.querySelector(".form-background").addEventListener("click", hideForm);
-document
-  .querySelector(".control-form")
-  .addEventListener("click", toggleFormVisibility);
+const overlay = document.querySelector(".form-background");
+overlay.addEventListener("click", hideForm);
+const toggleFormButton = document.querySelector(".control-form");
+toggleFormButton.addEventListener("click", toggleFormVisibility);
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("click", (event) => event.stopPropagation());
+
 form.addEventListener("submit", () => {
   const inputs = document.querySelectorAll("form > input");
 
