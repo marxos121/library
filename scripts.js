@@ -13,13 +13,14 @@ class Book {
 
 class Library {
   #library = [];
+  #display = document.querySelector(".library");
   constructor() {
     this.counter = 0;
   }
 
   remove(book) {
     let id = book.getAttribute("data-id");
-    libraryDisplay.removeChild(book);
+    this.#display.removeChild(book);
     let index = this.#library.indexOf(id);
     this.#library.splice(index, 1);
   }
@@ -50,18 +51,18 @@ class Library {
     newBookRead.setAttribute("type", "checkbox");
     newBookRead.checked = read;
 
-    newBook.setAttribute("data-id", this.counter++);
-
     newBookTopDiv.appendChild(newBookTitle);
     newBookTopDiv.appendChild(deleteButton);
-    newBook.appendChild(newBookTopDiv);
     newBookBotDiv.appendChild(newBookAuthor);
     newBookBotDiv.appendChild(newBookPages);
     newBookBotDiv.appendChild(newBookReadLabel);
     newBookBotDiv.appendChild(newBookRead);
-    newBook.append(newBookBotDiv);
 
-    libraryDisplay.appendChild(newBook);
+    newBook.appendChild(newBookTopDiv);
+    newBook.append(newBookBotDiv);
+    this.#display.appendChild(newBook);
+
+    newBook.setAttribute("data-id", this.counter++);
   }
 }
 
@@ -78,27 +79,18 @@ function toggleFormVisibility() {
     toggleFormButton.textContent = "-";
     overlay.style.setProperty("display", "block");
   } else {
-    toggleFormButton.textContent = "+";
-    overlay.style.setProperty("display", "none");
+    hideForm();
   }
 }
 
-const overlay = document.querySelector(".form-background");
-overlay.addEventListener("click", hideForm);
+document.querySelector(".form-background").addEventListener("click", hideForm);
+document
+  .querySelector(".control-form")
+  .addEventListener("click", toggleFormVisibility);
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("click", (event) => event.stopPropagation());
-
-const toggleFormButton = document.querySelector(".control-form");
-toggleFormButton.addEventListener("click", toggleFormVisibility);
-
-const libraryDisplay = document.querySelector(".library");
-
-const myLibrary = new Library();
-myLibrary.add("Demons", "Dostoevsky", 400, true);
-myLibrary.add("Alice in Wonderland", "Lewis Carroll", 200, false);
-
 form.addEventListener("submit", () => {
   const inputs = document.querySelectorAll("form > input");
 
@@ -109,3 +101,7 @@ form.addEventListener("submit", () => {
     inputs[3].value
   );
 });
+
+const myLibrary = new Library();
+myLibrary.add("Demons", "Dostoevsky", 400, true);
+myLibrary.add("Alice in Wonderland", "Lewis Carroll", 200, false);
