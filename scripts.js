@@ -6,10 +6,6 @@ class Book {
     this.haveRead = haveRead;
     this.id = id;
   }
-
-  set read(val) {
-    this.haveRead = val;
-  }
 }
 
 class Library {
@@ -19,10 +15,14 @@ class Library {
     this.counter = 0;
   }
 
-  remove(book) {
+  #getIndex(book) {
     let id = book.getAttribute("data-id");
+    return this.#library.findIndex((element) => element.id == id);
+  }
+
+  remove(book) {
+    let index = this.#getIndex(book);
     this.#display.removeChild(book);
-    let index = this.#library.findIndex((element) => element.id == id);
     this.#library.splice(index, 1);
   }
 
@@ -51,6 +51,10 @@ class Library {
     let newBookRead = document.createElement("input");
     newBookRead.setAttribute("type", "checkbox");
     newBookRead.checked = read;
+    newBookRead.addEventListener("click", () => {
+      let index = this.#getIndex(newBook);
+      this.#library[index].haveRead = newBookRead.checked;
+    });
 
     newBookTopDiv.appendChild(newBookTitle);
     newBookTopDiv.appendChild(deleteButton);
